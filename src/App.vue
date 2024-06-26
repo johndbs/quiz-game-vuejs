@@ -1,15 +1,26 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div>
+    <h1>jhfsdkjsndfsnflksflksf ksnfksfdlkjfsjlfslk</h1>
+
+    <input type="radio" name="options" value="True">
+    <label>True</label><br>
+
+    <input type="radio" name="options" value="False">
+    <label>False</label><br>
+
+    <button class="send" type="button"> Send</button>
+
+  </div>
+
+
 </template>
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
-import HelloWorld from './components/HelloWorld.vue';
 
 @Options({
   components: {
-    HelloWorld,
+
   },
 })
 export default class App extends Vue {}
@@ -22,6 +33,24 @@ export default class App extends Vue {}
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin: 60px auto;
+  max-width: 960px;
+
+  input[type=radio]{
+    margin: 12px 4px;
+  }
+
+  button-send {
+    margin-top: 12px;
+    height: 40px;
+    min-width: 120px;
+    padding: 0 160px;
+    color: #ffff;
+    background-color: #1867c0;
+    border: 1px solid #1867c0;
+    cursor: pointer;
+  }
+
+
 }
 </style>
