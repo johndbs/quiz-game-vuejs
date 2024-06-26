@@ -1,5 +1,8 @@
 <template>
-  <div v-if="this.question">
+<ScoreBoard />
+
+<div v-if="this.question">
+
     <h1 v-html="this.question"></h1>
 
     <template v-for="(answer, index) in answers" :key="index">
@@ -37,8 +40,6 @@
 
     </section>
 
-
-
   </div>
 
 
@@ -47,10 +48,11 @@
 <script lang="ts">
 import { computed } from 'vue';
 import { Options, Vue } from 'vue-class-component';
+import ScoreBoard from './components/ScoreBoard.vue';
 
 @Options({
   components: {
-
+    ScoreBoard
   },
 })
 export default class App extends Vue {
