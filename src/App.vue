@@ -1,5 +1,5 @@
 <template>
-<ScoreBoard />
+<ScoreBoard :winCount="this.winCount" :loseCount="this.loseCount"/>
 
 <div v-if="this.question">
 
@@ -61,6 +61,8 @@ export default class App extends Vue {
   correctAnswer = '';
   chosenAnswer!: string;
   answerSubmitted =  false;
+  winCount = 0;
+  loseCount = 0;
 
 
   answers = computed(()=>{
@@ -83,9 +85,9 @@ export default class App extends Vue {
     }else{
       this.answerSubmitted = true;
       if(this.chosenAnswer == this.correctAnswer){
-        alert('Good');
+        this.winCount++;
       }else{
-        alert('BAD');
+        this.loseCount++;
       }
     } 
   }

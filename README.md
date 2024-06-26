@@ -30,4 +30,8 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ```
 npm i vue-axios
 
+
+vue-property-decorator
+```
+npm i vue-property-decorator
 ```

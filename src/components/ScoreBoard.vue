@@ -1,25 +1,24 @@
 <template>
     <section class="score">
-        Player <span>0</span>  x <span>0</span> Computer
+        Player <span>{{winCount }}</span>  x <span>{{ loseCount }}</span> Computer
     </section>
 </template>
 
 <script lang="ts">
 
 import { Options, Vue } from 'vue-class-component';
+import { Prop } from 'vue-property-decorator';
+
 @Options({
     components: {
         
     },
 })
 export default class ScoreBoard extends Vue {
-    score = 0;
-    correctAnswers = 0;
-    incorrectAnswers = 0;
-    questions = 0;
-    getScore(){
-        this.score = (this.correctAnswers / this.questions) * 100;
-    }
+
+    @Prop({type: Number, required: true}) winCount!: number;
+    @Prop({type: Number, required: true}) loseCount!: number;
+    
 }
 
 </script>
