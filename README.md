@@ -1,5 +1,7 @@
 # quiz-game-vuejs
 
+Demo project with Vue3js and Typescript.
+
 ## Project setup
 ```
 npm install
