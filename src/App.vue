@@ -23,7 +23,14 @@ import { Options, Vue } from 'vue-class-component';
 
   },
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  created(): void {
+      this.axios.get("https://opentdb.com/api.php?amount=1&difficulty=easy").then((response) => {
+        console.log(response.data.results[0]);
+      });
+  }
+
+}
 </script>
 
 <style lang="scss">
