@@ -3,11 +3,33 @@
     <h1 v-html="this.question"></h1>
 
     <template v-for="(answer, index) in answers" :key="index">
-      <input type="radio" name="options" value="answer">
+      <input type="radio" 
+        name="options" 
+        :value="answer"
+        :disabled="answerSubmitted"
+        v-model="chosenAnswer"
+      >
       <label v-html="answer"></label><br>
     </template>
 
-    <button class="send" type="button"> Send</button>
+
+    <section v-if="this.answerSubmitted" class="result">
+      <div v-if="this.chosenAnswer != this.correctAnswer">
+          &#10060; The correct answer is: 
+          <span v-html="this.correctAnswer"></span> 
+      </div>
+      <div v-else>
+          &#9989; Correct!: 
+      </div>
+     
+    </section>
+
+    <button 
+        @click="submitAnswer()"
+        class="send" 
+        type="button"> 
+        Send
+    </button>
 
   </div>
 
@@ -27,6 +49,9 @@ export default class App extends Vue {
   question = ''; 
   incorrectAnswers: string[] = [];
   correctAnswer = '';
+  chosenAnswer!: string;
+  answerSubmitted =  false;
+
 
   answers = computed(()=>{
       let answers: string[] = JSON.parse(JSON.stringify(this.incorrectAnswers)); 
@@ -48,6 +73,19 @@ export default class App extends Vue {
       });
   }
 
+
+  submitAnswer(): void{
+    if(!this.chosenAnswer){
+      alert('Select an answer');
+    }else{
+      this.answerSubmitted = true;
+      if(this.chosenAnswer == this.correctAnswer){
+        alert('Good');
+      }else{
+        alert('BAD');
+      }
+    } 
+  }
 
 
 }
