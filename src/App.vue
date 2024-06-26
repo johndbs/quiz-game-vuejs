@@ -12,6 +12,12 @@
       <label v-html="answer"></label><br>
     </template>
 
+    <button v-if="!this.answerSubmitted"
+        @click="submitAnswer()"
+        class="send" 
+        type="button"> 
+        Send
+      </button>
 
     <section v-if="this.answerSubmitted" class="result">
       <div v-if="this.chosenAnswer != this.correctAnswer">
@@ -22,14 +28,16 @@
           &#9989; Correct!: 
       </div>
      
-    </section>
-
-    <button 
-        @click="submitAnswer()"
+      <button 
+        @click="getQuestion()"
         class="send" 
         type="button"> 
-        Send
-    </button>
+        Next
+      </button>
+
+    </section>
+
+
 
   </div>
 
@@ -63,14 +71,7 @@ export default class App extends Vue {
 
 
   created(): void {
-      this.axios.get("https://opentdb.com/api.php?amount=1&difficulty=easy").then((response) => {
-        console.log(response.data);
-        this.question = response.data.results[0].question;
-        this.incorrectAnswers = response.data.results[0].incorrect_answers;
-        this.correctAnswer = response.data.results[0].correct_answer;
-      }).catch((error)=>{
-        console.error(error);
-      });
+     this.getQuestion();
   }
 
 
@@ -85,6 +86,20 @@ export default class App extends Vue {
         alert('BAD');
       }
     } 
+  }
+
+  getQuestion(): void {
+    this.axios.get("https://opentdb.com/api.php?amount=1&difficulty=easy").then((response) => {
+        console.log(response.data);
+        this.question = response.data.results[0].question;
+        this.incorrectAnswers = response.data.results[0].incorrect_answers;
+        this.correctAnswer = response.data.results[0].correct_answer;
+
+        this.answerSubmitted = false;
+        this.chosenAnswer = '';
+      }).catch((error)=>{
+        console.error(error);
+      });
   }
 
 
